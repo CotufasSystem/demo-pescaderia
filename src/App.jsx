@@ -341,44 +341,44 @@ export default function App() {
             </div>
 
             {/* Acciones Rápidas Superiores */}
-            <div className="flex items-center gap-2 sm:gap-3 font-mono text-xs overflow-x-auto max-w-full pb-1 md:pb-0">
+            <div className="flex items-center gap-1.5 sm:gap-3 font-mono text-xs w-full md:w-auto justify-between md:justify-end overflow-x-auto pb-1 md:pb-0">
               {/* Tasa BCV */}
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/40 shadow-inner">
-                <span className="text-cyan-400 font-bold">TASA BCV:</span>
-                <span className="text-slate-300">Bs.</span>
+              <div className="flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/40 shadow-inner shrink-0">
+                <span className="text-cyan-400 font-bold text-[10px] sm:text-xs">BCV:</span>
+                <span className="text-slate-300 text-[10px] sm:text-xs">Bs.</span>
                 <input
                   type="number"
                   step="0.10"
                   value={exchangeRate}
                   onChange={(e) => setExchangeRate(parseFloat(e.target.value) || 1)}
-                  className="w-16 bg-transparent text-emerald-400 font-bold outline-none text-right"
+                  className="w-14 sm:w-16 bg-transparent text-emerald-400 font-bold outline-none text-right text-xs"
                 />
               </div>
 
               {/* Botón Principal Vender */}
               <button
                 onClick={() => setCurrentView('pos')}
-                className="px-4 py-2 rounded-xl text-slate-950 font-black text-xs flex items-center gap-2 shadow-lg cursor-pointer active:scale-95 transition-all hover:brightness-110"
+                className="px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl text-slate-950 font-black text-xs flex items-center gap-1.5 shadow-lg cursor-pointer active:scale-95 transition-all hover:brightness-110 shrink-0"
                 style={{ backgroundColor: 'var(--primary)' }}
               >
-                <ShoppingCart className="w-4 h-4" />
-                <span>Vender (POS)</span>
+                <ShoppingCart className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>POS</span>
               </button>
-
 
               {/* Botón Agregar Gasto */}
               <button
                 onClick={() => setCurrentView('expenses')}
-                className="px-3.5 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all active:scale-95"
+                className="p-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 font-bold text-xs flex items-center gap-1.5 cursor-pointer transition-all active:scale-95 shrink-0"
+                title="Agregar Gasto"
               >
                 <PlusCircle className="w-4 h-4 text-rose-400" />
-                <span className="hidden sm:inline">Agregar Gasto</span>
+                <span className="hidden sm:inline">Gasto</span>
               </button>
 
               {/* Botón Corte de Caja */}
               <button
                 onClick={() => setIsReportOpen(true)}
-                className="px-3 py-2 rounded-xl bg-cyan-900/40 hover:bg-cyan-800 text-cyan-200 border border-cyan-500/40 flex items-center gap-1.5 font-bold cursor-pointer transition-all active:scale-95"
+                className="p-1.5 sm:px-3 sm:py-2 rounded-xl bg-cyan-900/40 hover:bg-cyan-800 text-cyan-200 border border-cyan-500/40 flex items-center gap-1.5 font-bold cursor-pointer transition-all active:scale-95 shrink-0"
                 title="Corte Z / Arqueo de Caja"
               >
                 <FileSpreadsheet className="w-4 h-4 text-cyan-400" />
@@ -388,7 +388,7 @@ export default function App() {
               {/* Botón Configuración */}
               <button
                 onClick={() => setIsSettingsOpen(true)}
-                className="p-2 rounded-xl bg-slate-900/90 hover:bg-cyan-900 text-slate-300 hover:text-cyan-300 border border-cyan-500/40 flex items-center justify-center cursor-pointer transition-all active:scale-95"
+                className="p-1.5 sm:p-2 rounded-xl bg-slate-900/90 hover:bg-cyan-900 text-slate-300 hover:text-cyan-300 border border-cyan-500/40 flex items-center justify-center cursor-pointer transition-all active:scale-95 shrink-0"
                 title="Configuración de Interfaz"
               >
                 <Settings className="w-4 h-4 text-cyan-400" />
@@ -425,19 +425,19 @@ export default function App() {
                 />
 
                 {selectedProduct && (
-                  <div className="marine-glass-card rounded-2xl p-4 border border-cyan-400/40 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div className="marine-glass-card rounded-2xl p-3 sm:p-4 border border-cyan-400/40 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4">
                     <div className="flex items-center gap-3">
-                      <span className="text-4xl">{selectedProduct.image}</span>
-                      <div>
-                        <div className="flex items-center gap-2">
-                          <h3 className="text-lg font-black text-white">{selectedProduct.name}</h3>
-                          <span className="text-xs px-2 py-0.5 rounded-md bg-cyan-950 text-cyan-300 border border-cyan-800 font-mono">
+                      <span className="text-3xl sm:text-4xl shrink-0">{selectedProduct.image}</span>
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
+                          <h3 className="text-base sm:text-lg font-black text-white truncate">{selectedProduct.name}</h3>
+                          <span className="text-[11px] px-2 py-0.5 rounded-md bg-cyan-950 text-cyan-300 border border-cyan-800 font-mono shrink-0">
                             ${selectedProduct.pricePerKg.toFixed(2)}/kg
                           </span>
                         </div>
-                        <p className="text-xs text-slate-400">
-                          Peso activo en báscula: <strong className="text-cyan-300 font-mono">{currentWeight.toFixed(3)} kg</strong>
-                          {' '}— Importe:{' '}
+                        <p className="text-[11px] sm:text-xs text-slate-400 mt-0.5">
+                          Báscula: <strong className="text-cyan-300 font-mono">{currentWeight.toFixed(3)} kg</strong>
+                          {' '}— Total:{' '}
                           <strong className="text-emerald-400 font-mono text-sm">
                             ${(selectedProduct.pricePerKg * currentWeight).toFixed(2)}
                           </strong>
@@ -445,22 +445,22 @@ export default function App() {
                       </div>
                     </div>
 
-                    <div className="flex items-center gap-2 w-full sm:w-auto">
+                    <div className="grid grid-cols-2 sm:flex sm:items-center gap-2 w-full sm:w-auto">
                       <button
                         onClick={() => {
                           setTraceabilityProduct(selectedProduct);
                           setIsTraceabilityOpen(true);
                         }}
-                        className="px-3 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-bold border border-cyan-500/30 cursor-pointer"
+                        className="px-3 py-2 sm:py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-300 text-xs font-bold border border-cyan-500/30 cursor-pointer text-center"
                       >
-                        Etiqueta Lote
+                        Etiqueta
                       </button>
                       <button
                         onClick={handleAddToCart}
-                        className="flex-1 sm:flex-none px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-slate-950 font-black text-xs flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/30 cursor-pointer active:scale-95"
+                        className="px-4 py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 hover:from-cyan-300 hover:to-blue-400 text-slate-950 font-black text-xs flex items-center justify-center gap-1.5 shadow-lg shadow-cyan-500/30 cursor-pointer active:scale-95"
                       >
-                        <PlusCircle className="w-4 h-4" />
-                        Agregar a la Orden
+                        <PlusCircle className="w-4 h-4 shrink-0" />
+                        <span>Agregar</span>
                       </button>
                     </div>
                   </div>

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { 
   Fish, 
   Search, 
@@ -70,7 +70,7 @@ export default function ProductCatalog({
       </div>
 
       {/* Grid de Productos de Pescadería */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
+      <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {filtered.map((prod) => {
           const isSelected = selectedProduct?.id === prod.id;
           const livePriceForScale = currentWeight > 0 ? (prod.pricePerKg * currentWeight).toFixed(2) : prod.pricePerKg.toFixed(2);

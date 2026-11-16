@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { 
   CreditCard, 
   Banknote, 
@@ -113,14 +113,14 @@ export default function PaymentModal({
               <h2 className="text-2xl font-bold mt-2 text-white flex items-center gap-2">
                 Finalizar Venta de Pescadería
               </h2>
-              <div className="grid grid-cols-2 gap-3 mt-4 p-4 rounded-2xl bg-[#040e1b] border border-cyan-900/60 font-mono">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4 p-3 sm:p-4 rounded-2xl bg-[#040e1b] border border-cyan-900/60 font-mono">
                 <div>
-                  <span className="text-xs text-slate-400 block">TOTAL EN DIVISAS:</span>
-                  <span className="text-3xl font-black text-cyan-300">${totalUSD.toFixed(2)}</span>
+                  <span className="text-[11px] sm:text-xs text-slate-400 block">TOTAL EN DIVISAS:</span>
+                  <span className="text-2xl sm:text-3xl font-black text-cyan-300">${totalUSD.toFixed(2)}</span>
                 </div>
-                <div className="text-right">
-                  <span className="text-xs text-slate-400 block">TOTAL EN BS. (BCV {exchangeRate.toFixed(2)}):</span>
-                  <span className="text-2xl font-black text-emerald-400">Bs. {totalBS.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                <div className="sm:text-right">
+                  <span className="text-[11px] sm:text-xs text-slate-400 block">TOTAL EN BS. (BCV {exchangeRate.toFixed(2)}):</span>
+                  <span className="text-xl sm:text-2xl font-black text-emerald-400">Bs. {totalBS.toLocaleString('es-VE', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                 </div>
               </div>
             </div>
