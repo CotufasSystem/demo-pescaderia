@@ -69,6 +69,8 @@ export default function App() {
   const [currentView, setCurrentView] = useState('home');
   const [inventorySubmenuOpen, setInventorySubmenuOpen] = useState(true);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+
 
   // Configuración del sistema
   const [config, setConfig] = useState(() => {
@@ -290,6 +292,8 @@ export default function App() {
         setInventorySubmenuOpen={setInventorySubmenuOpen}
         collapsed={sidebarCollapsed}
         setCollapsed={setSidebarCollapsed}
+        mobileOpen={mobileSidebarOpen}
+        setMobileOpen={setMobileSidebarOpen}
         cartCount={cart.length}
         lowStockCount={lowStockCount}
         config={config}
@@ -299,30 +303,45 @@ export default function App() {
       <div className={`flex-1 flex flex-col transition-all duration-300 min-h-screen ${sidebarMarginClass}`}>
         
         {/* Barra de Navegación Superior con estilo de referencia */}
-        <header className="marine-glass sticky top-0 z-30 border-b border-cyan-500/30 px-6 py-3.5 backdrop-blur-md">
+        <header className="marine-glass sticky top-0 z-30 border-b border-cyan-500/30 px-4 sm:px-6 py-3.5 backdrop-blur-md">
           <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-3">
             
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-                className="p-2 rounded-xl bg-cyan-950/80 hover:bg-cyan-900 text-cyan-300 border border-cyan-500/40 cursor-pointer md:hidden flex items-center justify-center"
-              >
-                <Menu className="w-5 h-5" />
-              </button>
-              <div>
-                <h1 className="text-xl font-black tracking-wider bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent flex items-center gap-2">
-                  DEMO
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-mono">
-                    SISTEMA INTEGRAL DE PESCADERÍA
-                  </span>
-                </h1>
-                <p className="text-xs text-cyan-300/70">Control de lonja, mermas, gastos operativos y venta con báscula</p>
+            <div className="flex items-center justify-between w-full md:w-auto gap-3">
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => setMobileSidebarOpen(!mobileSidebarOpen)}
+                  className="p-2 rounded-xl bg-cyan-950/80 hover:bg-cyan-900 text-cyan-300 border border-cyan-500/40 cursor-pointer md:hidden flex items-center justify-center shrink-0"
+                  title="Abrir menú"
+                >
+                  <Menu className="w-5 h-5" />
+                </button>
+                <div>
+                  <h1 className="text-lg sm:text-xl font-black tracking-wider bg-gradient-to-r from-white via-cyan-200 to-cyan-400 bg-clip-text text-transparent flex items-center gap-2">
+                    DEMO
+                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-mono hidden sm:inline-block">
+                      SISTEMA INTEGRAL DE PESCADERÍA
+                    </span>
+                  </h1>
+                  <p className="text-[11px] sm:text-xs text-cyan-300/70 truncate max-w-[200px] sm:max-w-none">
+                    Control de lonja, mermas, gastos y venta POS
+                  </p>
+                </div>
+              </div>
 
+              {/* Botón rápido de menú en móvil */}
+              <div className="flex items-center gap-2 md:hidden">
+                <button
+                  onClick={() => setIsSettingsOpen(true)}
+                  className="p-2 rounded-xl bg-slate-900/90 hover:bg-cyan-900 text-cyan-400 border border-cyan-500/40"
+                  title="Configuración"
+                >
+                  <Settings className="w-4 h-4" />
+                </button>
               </div>
             </div>
 
             {/* Acciones Rápidas Superiores */}
-            <div className="flex items-center gap-3 font-mono text-xs">
+            <div className="flex items-center gap-2 sm:gap-3 font-mono text-xs overflow-x-auto max-w-full pb-1 md:pb-0">
               {/* Tasa BCV */}
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-cyan-500/40 shadow-inner">
                 <span className="text-cyan-400 font-bold">TASA BCV:</span>
